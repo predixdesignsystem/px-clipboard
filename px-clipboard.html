@@ -1,0 +1,104 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html" />
+<link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
+
+<!--
+Element allowing copy to clipboard.
+Please note,
+
+##### Usage
+
+    <px-clipboard data-clipboard-target="#hello"></px-clipboard>
+
+@element px-clipboard
+@blurb Element allowing copy to clipboard.
+@homepage index.html
+@demo demo.html
+-->
+<dom-module id="px-clipboard">
+  <link rel="import" type="css" href="css/px-clipboard.css"/>
+  <template>
+    <iron-icon icon="polymer-font-awesome:fa-clipboard" id="copy"></iron-icon>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-clipboard',
+
+    /**
+     * Properties block, expose attribute values to the DOM via 'notify'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {
+      /**
+       * the target from which we are copying info into the clipboard from.
+       * This
+       *
+       * @property dataClipboardTarget
+       * @type String
+       */
+      dataClipboardTarget: {
+        type: String,
+        value:''
+      },
+      /**
+       * an attribute that allows you to cut text - not just copy.
+       * available options are 'cut' or 'copy'
+       * @property dataClipboardAction
+       * @type String
+       */
+      dataClipboardAction: {
+        type: String,
+        value: ''
+      },
+      /**
+       * an attribute that allows you to set the text that will go into the clipboard.
+       *
+       * @property dataClipboardText
+       * @type String
+       */
+
+      dataClipboardText: {
+        type: String,
+        value: ''
+      }
+    },
+    attached: function() {
+      var clipboard = new Clipboard(this),
+      self = this;
+
+      clipboard.on('success', function(e) {
+        self.success(e);
+      })
+      .on('error', function(e) {
+        self.error(e);
+      });
+    },
+    detached: function() {
+      clipboard.destroy();
+    },
+    /*
+    * this event is fired after a success copy/cut.
+    *  @event clipboardSuccess
+    */
+    success: function(e) {
+      this.fire('clipboardSuccess', e);
+    },
+    /*
+    * this event is fired after an erro occurs with  copy/cut.
+    *  @event clipboardError
+    */
+    error: function(e) {
+      this.fire('clipboardError', e);
+    }
+  });
+</script>

@@ -1,0 +1,26 @@
+{
+  "name": "px-clipboard",
+  "version": "0.0.1",
+  "main": [
+    "px-clipboard.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test"
+  ],
+  "dependencies": {
+    "polymer": "~1.4.0",
+    "px-theme": "~0.7.1",
+    "clipboard": "~1.5.12",
+    "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#~0.1.4"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#~v1.1.6",
+    "px-starter-kit-design": "~0.5.5"
+  }
+}
