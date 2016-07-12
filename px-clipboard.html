@@ -8,12 +8,21 @@
 <link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
 
 <!--
-Element allowing copy to clipboard.
-Please note,
+Element allowing copy/cut to clipboard.
+The value to be copied/cut must be placed in an input/textarea INSIDE px-clipboard, or else the
+dataClipboardText property must be used.
 
 ##### Usage
 
-    <px-clipboard data-clipboard-target="#hello"></px-clipboard>
+    <px-clipboard copy-from="#copyMe"><input type="text" value="copy me" id="copyMe"/></px-clipboard>
+
+Or, to cut:
+
+    <px-clipboard data-clipboard-action="cut" copy-from="#cutMe"><input type="text" value="Cut me" id="cutMe"/></px-clipboard>
+
+Or, with no input/textarea:
+
+    <px-clipboard data-clipboard-text="This text will be copied."></px-clipboard>
 
 @element px-clipboard
 @blurb Element allowing copy to clipboard.
@@ -23,6 +32,7 @@ Please note,
 <dom-module id="px-clipboard">
   <link rel="import" type="css" href="css/px-clipboard.css"/>
   <template>
+    <content></content>
     <iron-icon icon="polymer-font-awesome:fa-clipboard" id="copy"></iron-icon>
   </template>
 </dom-module>
@@ -40,19 +50,8 @@ Please note,
      */
     properties: {
       /**
-       * the target from which we are copying info into the clipboard from.
-       * This
-       *
-       * @property dataClipboardTarget
-       * @type String
-       */
-      dataClipboardTarget: {
-        type: String,
-        value:''
-      },
-      /**
-       * an attribute that allows you to cut text - not just copy.
-       * available options are 'cut' or 'copy'
+       * An attribute that allows you to cut text (vs copy).
+       * Available options are 'cut' or 'copy'
        * @property dataClipboardAction
        * @type String
        */
@@ -61,43 +60,172 @@ Please note,
         value: ''
       },
       /**
-       * an attribute that allows you to set the text that will go into the clipboard.
+       * An attribute that points to the element holding the value
+       * you'd like to cut or copy.
+       * Possible options are `tag`, `class` or `ID`.
+       * @property copyFrom
+       * @type String
+       */
+      copyFrom: {
+        type: String,
+        value: ''
+      },
+      /**
+       *
+       * An object that holds a reference to the node from which the value is copied/cut from.
+       *
+       * @property _copyFromElem
+       * @type Objecct
+       */
+      _copyFromElem: {
+        type: Object,
+        observer: '_initializeClipboard'
+      },
+      /**
+       * An attribute that allows you to set the text that will go into the clipboard.
        *
        * @property dataClipboardText
        * @type String
        */
-
       dataClipboardText: {
         type: String,
         value: ''
-      }
+      },
     },
     attached: function() {
-      var clipboard = new Clipboard(this),
-      self = this;
-
-      clipboard.on('success', function(e) {
-        self.success(e);
-      })
-      .on('error', function(e) {
-        self.error(e);
-      });
+      var content = this.$$('content'),
+          _observer = Polymer.dom(content).observeNodes(this._setCopyFrom.bind(this)),
+          self = this,
+          copy = this.$$('#copy');
+      //check whether this is a text only clipboard element.
+      if (this.dataClipboardText) {
+        //initialize clipboard`
+        var clipboard = this._initializeTextOnly(self, copy);
+        //and initialze the events
+        this._setEventFire(clipboard, self);
+      }
     },
     detached: function() {
       clipboard.destroy();
     },
+    /**
+     * This method is called when the _copyFromElem property changes (the light dom is loaded).
+     * It initilizes a clipboard object.
+     *
+     * @method _initializeClipboard
+     *
+     */
+    _initializeClipboard: function() {
+      var self = this,
+          copy = this.$$('#copy'),
+          clipboard;
+
+      clipboard = this._initializeCopy(self, copy);
+
+      if (this.dataClipboardAction) {
+        clipboard.action = function(trigger) {
+          return self.dataClipboardAction;
+        };
+      }
+
+      this._setEventFire(clipboard, self);
+
+    },
+    /**
+     * This method captures the internal success/error message sent by the clipboard
+     * and calls _success or _error.
+     *
+     * @method _initializeClipboard
+     *
+     */
+    _setEventFire: function(clipboard, self) {
+
+      clipboard.on('success', function(e) {
+        self._success(e);
+      })
+      .on('error', function(e) {
+        self._error(e);
+      });
+    },
+    /**
+     * This method finds the element specified in copyFrom, and sets _copyFromElem
+     *
+     *
+     * @method _setCopyFrom
+     *
+     */
+    _setCopyFrom: function() {
+      var copyFrom  = Polymer.dom(this).querySelector(this.copyFrom);
+
+      this.set('_copyFromElem', copyFrom);
+    },
+    /**
+     * This method returns a new instance of the Clipboard object
+     * and sets the _copyFrom property
+     *
+     * @method _initializeCopy
+     * @return {Clipboard Object}
+     *
+     */
+    _initializeCopy: function(self, copy) {
+
+      var content = this.$$('content'),
+          copyFrom;
+
+      if (this.copyFrom) {
+
+        this._setCopyFrom();
+
+        return new Clipboard(copy,
+          { target:
+              function(trigger) {
+                return self._copyFromElem;
+            }
+          }
+        );
+      } else {
+        throw "You must specify where you'd like the value copied/cut from using the copy-from attribute";
+      }
+
+    },
+    /**
+     * This method returns a new instance of the Clipboard object
+     * that has text set on it using the data-clipboard-text attribute
+     *
+     * @method _initializeTextOnly
+     * @return {Clipboard Object}
+     *
+     */
+    _initializeTextOnly: function(self, copy) {
+
+      return new Clipboard(copy,
+        { text:
+            function(trigger) {
+              return self.dataClipboardText;
+          }
+        }
+      );
+    },
     /*
-    * this event is fired after a success copy/cut.
+    * This event is fired after a successful copy/cut.
     *  @event clipboardSuccess
     */
-    success: function(e) {
+    /*
+    * This method fires off a clipboardSuccess event
+    *  @method _success
+    */
+    _success: function(e) {
       this.fire('clipboardSuccess', e);
     },
     /*
-    * this event is fired after an erro occurs with  copy/cut.
+    * This event is fired after an error occurs with copy/cut.
     *  @event clipboardError
     */
-    error: function(e) {
+    /*
+    * This method fires off a clipboardError event
+    *  @method _error
+    */
+    _error: function(e) {
       this.fire('clipboardError', e);
     }
   });

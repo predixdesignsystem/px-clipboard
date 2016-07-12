@@ -16,19 +16,14 @@
 
   <body>
       <h3>Copy Demo</h3>
-        <input type="text" id="helloCopy" value="hello World Copy"/>
-        <px-clipboard data-clipboard-target="#helloCopy" ></px-clipboard>
+
+        <px-clipboard copy-from="#helloCopy"><input type="text" id="helloCopy" value="hello World Copy"/></px-clipboard>
 
       <h3>Cut Demo</h3>
-        <input type="text" id="helloCut" value="hello World Cut"/>
-        <px-clipboard data-clipboard-target="#helloCut" data-clipboard-action="cut"></px-clipboard>
+
+        <px-clipboard data-clipboard-action="cut" copy-from="#helloCut"><input type="text" id="helloCut" value="hello World Cut"/></px-clipboard>
 
       <h3>copy from attribute</h3>
         <px-clipboard data-clipboard-text="Copy some text into the clipboard!"></px-clipboard>
   </body>
-  <script>
-    document.addEventListener('clipboardSuccess', function() {
-      console.log("got success message.");
-    });
-  </script>
 </html>
