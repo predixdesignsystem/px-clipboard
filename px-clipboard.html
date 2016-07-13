@@ -9,8 +9,8 @@
 
 <!--
 Element allowing copy/cut to clipboard.
-The value to be copied/cut must be placed in an input/textarea INSIDE px-clipboard, or else the
-dataClipboardText property must be used.
+The value to be copied/cut must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from. if the copy-from attribute does not exist,
+the data-clipboard-text property must be used.
 
 ##### Usage
 
@@ -25,7 +25,7 @@ Or, with no input/textarea:
     <px-clipboard data-clipboard-text="This text will be copied."></px-clipboard>
 
 @element px-clipboard
-@blurb Element allowing copy to clipboard.
+@blurb Element allowing copy/cut to clipboard.
 @homepage index.html
 @demo demo.html
 -->
@@ -89,74 +89,111 @@ Or, with no input/textarea:
        */
       dataClipboardText: {
         type: String,
-        value: ''
+        value: '',
+        observer: '_updateText'
       },
+      /**
+       * An attribute holds the Clipboard object.
+       *
+       * @property _clipboard
+       * @type Object
+       */
+      _clipboard: {
+        type: Object
+      }
     },
     attached: function() {
       var content = this.$$('content'),
+          //this calls the _setCopyFrom method when the content is loaded, and makes sure the Polymer this is bound to that function.
           _observer = Polymer.dom(content).observeNodes(this._setCopyFrom.bind(this)),
-          self = this,
+          _this = this,
           copy = this.$$('#copy');
       //check whether this is a text only clipboard element.
       if (this.dataClipboardText) {
         //initialize clipboard`
-        var clipboard = this._initializeTextOnly(self, copy);
+        this._clipboard = this._initializeTextOnly(_this, copy);
         //and initialze the events
-        this._setEventFire(clipboard, self);
+        this._setEventFire(_this);
       }
     },
     detached: function() {
-      clipboard.destroy();
+      //clean up after ourselves.
+      this._destroy();
+    },
+    _destroy: function() {
+      //removes the current Clipboard instance, if it exists.
+      if (this._clipboard) {
+        this._clipboard.destroy();
+      }
+    },
+    /**
+     * This method is called when the the text to be copied is updated on a copy where data-clipboard-text is used.
+     * It destroys the old copy, initilizes a new Clipboard object with the new text property, and sets the listeners on the new Clipboard object
+     *
+     * @method _updateText
+     */
+    _updateText: function() {
+      var _this = this,
+          copy = this.$$('#copy');
+      if (this.dataClipboardText) {
+        this._destroy();
+        this._clipboard = this._initializeTextOnly(_this, copy);
+        this._setEventFire(_this);
+      }
+
     },
     /**
      * This method is called when the _copyFromElem property changes (the light dom is loaded).
      * It initilizes a clipboard object.
      *
      * @method _initializeClipboard
-     *
      */
     _initializeClipboard: function() {
-      var self = this,
-          copy = this.$$('#copy'),
-          clipboard;
+      var _this = this,
+          copy = this.$$('#copy');
 
-      clipboard = this._initializeCopy(self, copy);
+      //check that we aren't dealing with a text only clipboard
+      if (!this.dataClipboardText) {
+        //initialze our clipboard object
+        this._clipboard = this._initializeCopy(_this, copy);
 
-      if (this.dataClipboardAction) {
-        clipboard.action = function(trigger) {
-          return self.dataClipboardAction;
-        };
+        //and if it's a cut action, set that up.
+        if (this.dataClipboardAction) {
+          this._clipboard.action = function(trigger) {
+            return _this.dataClipboardAction;
+          };
+        }
+
+        //lastly, we turn on listeners that will fire events.
+        this._setEventFire(_this);
       }
-
-      this._setEventFire(clipboard, self);
-
     },
     /**
      * This method captures the internal success/error message sent by the clipboard
      * and calls _success or _error.
      *
      * @method _initializeClipboard
-     *
      */
-    _setEventFire: function(clipboard, self) {
+    _setEventFire: function(_this) {
 
-      clipboard.on('success', function(e) {
-        self._success(e);
+      //listen to a success or error event. I put these here since "success" or "error" are really generic, and I wanted better event Names.
+      this._clipboard.on('success', function(e) {
+        _this._success(e);
       })
       .on('error', function(e) {
-        self._error(e);
+        _this._error(e);
       });
     },
     /**
      * This method finds the element specified in copyFrom, and sets _copyFromElem
      *
-     *
      * @method _setCopyFrom
      *
      */
     _setCopyFrom: function() {
+      //find the element we are copying from
       var copyFrom  = Polymer.dom(this).querySelector(this.copyFrom);
-
+      //and set _copyFromElem to that element.
       this.set('_copyFromElem', copyFrom);
     },
     /**
@@ -165,28 +202,26 @@ Or, with no input/textarea:
      *
      * @method _initializeCopy
      * @return {Clipboard Object}
-     *
      */
-    _initializeCopy: function(self, copy) {
+    _initializeCopy: function(_this, copy) {
 
       var content = this.$$('content'),
           copyFrom;
-
+      //check we have an attribute telling us where to copy from
       if (this.copyFrom) {
-
+        //since we do, let's set it up as an element reference
         this._setCopyFrom();
-
+        //and return a new Clipboard object that points to this element.
         return new Clipboard(copy,
           { target:
               function(trigger) {
-                return self._copyFromElem;
+                return _this._copyFromElem;
             }
           }
         );
       } else {
         throw "You must specify where you'd like the value copied/cut from using the copy-from attribute";
       }
-
     },
     /**
      * This method returns a new instance of the Clipboard object
@@ -196,12 +231,12 @@ Or, with no input/textarea:
      * @return {Clipboard Object}
      *
      */
-    _initializeTextOnly: function(self, copy) {
-
+    _initializeTextOnly: function(_this, copy) {
+      //we return a new Clipboard instance that has a text property set on it.
       return new Clipboard(copy,
         { text:
             function(trigger) {
-              return self.dataClipboardText;
+              return _this.dataClipboardText;
           }
         }
       );
@@ -215,7 +250,7 @@ Or, with no input/textarea:
     *  @method _success
     */
     _success: function(e) {
-      this.fire('clipboardSuccess', e);
+      this.fire('pxClipboardSuccess', e);
     },
     /*
     * This event is fired after an error occurs with copy/cut.
@@ -226,7 +261,7 @@ Or, with no input/textarea:
     *  @method _error
     */
     _error: function(e) {
-      this.fire('clipboardError', e);
+      this.fire('pxClipboardError', e);
     }
   });
 </script>
