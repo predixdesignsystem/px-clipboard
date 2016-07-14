@@ -106,14 +106,13 @@ Or, with no input/textarea:
       var content = this.$$('content'),
           //this calls the _setCopyFrom method when the content is loaded, and makes sure the Polymer this is bound to that function.
           _observer = Polymer.dom(content).observeNodes(this._setCopyFrom.bind(this)),
-          _this = this,
           copy = this.$$('#copy');
       //check whether this is a text only clipboard element.
       if (this.dataClipboardText) {
         //initialize clipboard`
-        this._clipboard = this._initializeTextOnly(_this, copy);
+        this._clipboard = this._initializeTextOnly(copy);
         //and initialze the events
-        this._setEventFire(_this);
+        this._setEventFire();
       }
     },
     detached: function() {
@@ -133,12 +132,11 @@ Or, with no input/textarea:
      * @method _updateText
      */
     _updateText: function() {
-      var _this = this,
-          copy = this.$$('#copy');
+      var copy = this.$$('#copy');
       if (this.dataClipboardText) {
         this._destroy();
-        this._clipboard = this._initializeTextOnly(_this, copy);
-        this._setEventFire(_this);
+        this._clipboard = this._initializeTextOnly(copy);
+        this._setEventFire();
       }
 
     },
@@ -149,23 +147,22 @@ Or, with no input/textarea:
      * @method _initializeClipboard
      */
     _initializeClipboard: function() {
-      var _this = this,
-          copy = this.$$('#copy');
+      var copy = this.$$('#copy');
 
       //check that we aren't dealing with a text only clipboard
       if (!this.dataClipboardText) {
         //initialze our clipboard object
-        this._clipboard = this._initializeCopy(_this, copy);
+        this._clipboard = this._initializeCopy(copy);
 
         //and if it's a cut action, set that up.
         if (this.dataClipboardAction) {
           this._clipboard.action = function(trigger) {
-            return _this.dataClipboardAction;
-          };
+            return this.dataClipboardAction;
+          }.bind(this);
         }
 
         //lastly, we turn on listeners that will fire events.
-        this._setEventFire(_this);
+        this._setEventFire();
       }
     },
     /**
@@ -174,15 +171,15 @@ Or, with no input/textarea:
      *
      * @method _initializeClipboard
      */
-    _setEventFire: function(_this) {
+    _setEventFire: function() {
 
       //listen to a success or error event. I put these here since "success" or "error" are really generic, and I wanted better event Names.
       this._clipboard.on('success', function(e) {
-        _this._success(e);
-      })
+        this._success(e);
+      }.bind(this))
       .on('error', function(e) {
-        _this._error(e);
-      });
+        this._error(e);
+      }.bind(this));
     },
     /**
      * This method finds the element specified in copyFrom, and sets _copyFromElem
@@ -203,7 +200,7 @@ Or, with no input/textarea:
      * @method _initializeCopy
      * @return {Clipboard Object}
      */
-    _initializeCopy: function(_this, copy) {
+    _initializeCopy: function(copy) {
 
       var content = this.$$('content'),
           copyFrom;
@@ -215,8 +212,8 @@ Or, with no input/textarea:
         return new Clipboard(copy,
           { target:
               function(trigger) {
-                return _this._copyFromElem;
-            }
+                return this._copyFromElem;
+            }.bind(this)
           }
         );
       } else {
@@ -231,13 +228,13 @@ Or, with no input/textarea:
      * @return {Clipboard Object}
      *
      */
-    _initializeTextOnly: function(_this, copy) {
+    _initializeTextOnly: function(copy) {
       //we return a new Clipboard instance that has a text property set on it.
       return new Clipboard(copy,
         { text:
             function(trigger) {
-              return _this.dataClipboardText;
-          }
+              return this.dataClipboardText;
+          }.bind(this)
         }
       );
     },
