@@ -14,8 +14,8 @@
     "test"
   ],
   "dependencies": {
-    "polymer": "~1.4.0",
-    "px-theme": "~0.7.1",
+    "polymer": "^1.6.0",
+    "px-theme": "^0.8.0",
     "clipboard": "~1.5.12",
     "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#~0.1.4"
   },
