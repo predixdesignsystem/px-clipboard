@@ -71,7 +71,7 @@ Finally, use the component in your application:
 
 ## documentation
 
-Read the full API and view the demo [here](https://predixdev.github.io/Px-Clipboard).
+Read the full API and view the demo [here](https://predixdev.github.io/px-clipboard).
 
 The documentation in this repository is supplemental to the official Predix documentation, which is continuously updated and maintained by the Predix documentation team. Go to [http://predix.io](http://predix.io)  to see the official Predix documentation.
 
