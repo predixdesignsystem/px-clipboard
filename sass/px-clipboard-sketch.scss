@@ -40,6 +40,10 @@ Predix branding rules go in px-clipboard-predix.scss, not in this file.
 :host {
   cursor: pointer;
 }
+ .iron {
+   height: calculateRem(24px);
+   width: calculateRem(24px);
+ }
 // Trumps
 @import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";

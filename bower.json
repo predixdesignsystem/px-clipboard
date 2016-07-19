@@ -1,6 +1,6 @@
 {
   "name": "px-clipboard",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": [
     "px-clipboard.html"
   ],
@@ -16,7 +16,7 @@
     "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "polymer": "^1.6.0",
+    "polymer": "^1.5.0",
     "px-theme": "^0.8.0",
     "clipboard": "~1.5.12",
     "polymer-font-awesome": "~0.1.5"

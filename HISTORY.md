@@ -1,5 +1,9 @@
 v0.0.3
 ==================
+* downgraded polymer to 1.5
+
+v0.0.3
+==================
 * updated travis file
 
 v0.0.2
