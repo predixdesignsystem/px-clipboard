@@ -1,3 +1,7 @@
+v0.0.5
+==================
+* changed bower file
+
 v0.0.4
 ==================
 * downgraded polymer to 1.5
