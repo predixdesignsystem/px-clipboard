@@ -1,3 +1,7 @@
+v0.0.8
+==================
+* changed favicon reference
+
 v0.0.7
 ==================
 * added ssh credentials
