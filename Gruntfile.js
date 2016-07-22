@@ -24,7 +24,8 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'css/noprefix/px-clipboard-sketch.css': 'sass/px-clipboard-sketch.scss',
-          'css/noprefix/px-clipboard.css': 'sass/px-clipboard-predix.scss'
+          'css/noprefix/px-clipboard.css': 'sass/px-clipboard-predix.scss',
+          'css/noprefix/px-clipboard-demo.css': 'sass/px-clipboard-demo.scss',
         }
       }
     },
@@ -100,7 +101,7 @@ module.exports = function(grunt) {
         commitFiles: ['package.json', 'bower.json'],
         push: false
       }
-    }    
+    }
   });
 
   grunt.loadNpmTasks('grunt-bump');

@@ -32,9 +32,9 @@ Or, with no input/textarea:
 <dom-module id="px-clipboard">
   <link rel="import" type="css" href="css/px-clipboard.css"/>
   <template>
-    <content></content>
-    <div class="iron">
-      <iron-icon icon="polymer-font-awesome:fa-clipboard" id="copy"></iron-icon>
+    <div class="flex">
+      <div class="flex__item"><content></content></div>
+      <div class="iron flex__item"><iron-icon icon="polymer-font-awesome:fa-clipboard" id="copy"></iron-icon></div>
     </div>
   </template>
 </dom-module>
