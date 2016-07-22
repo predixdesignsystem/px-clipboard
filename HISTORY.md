@@ -1,3 +1,7 @@
+v0.0.7
+==================
+* added ssh credentials
+
 v0.0.6
 ==================
 * added new demo
