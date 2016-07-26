@@ -1,6 +1,6 @@
 {
   "name": "px-clipboard",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": [
     "px-clipboard.html"
   ],
@@ -13,7 +13,8 @@
     "node_modules",
     "test",
     ".github",
-    "OSS_Notice.pdf"
+    "OSS_Notice.pdf",
+    "scripts"
   ],
   "dependencies": {
     "polymer": "^1.5.0",
@@ -30,8 +31,8 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
     "polymer-font-awesome": "~0.1.5",
     "px-tabs": "~0.4.0",
-    "px-api-viewer": "https://github.com/PredixDev/px-api-viewer.git",
-    "px-demo-snippet": "https://github.com/predixdev/px-demo-snippet.git",
+    "px-api-viewer": "~0.0.3",
+    "px-demo-snippet": "~0.0.11",
     "px-toggle-design": "^0.2.12",
     "px-headings-design": "^0.2.14",
     "px-actionable-text-icons-design": "^0.0.3",

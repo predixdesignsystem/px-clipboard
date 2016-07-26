@@ -101,13 +101,14 @@ $inuit-enable-list-inline--delimited : true;
   }
 }
 .api {
-  width:80%;
+  width:100%;
   margin:0 auto;
   max-width:calculateRem(1200px);
 }
 .apiContainer {
   margin: 0 auto;
   background-color: $white;
+  width: 80%;
 }
 .tabContainer {
   flex:0 0 100%;

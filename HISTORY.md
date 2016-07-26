@@ -1,3 +1,7 @@
+v0.0.9
+==================
+* updated gh-pages script to vulcanize demo
+
 v0.0.8
 ==================
 * changed favicon reference
