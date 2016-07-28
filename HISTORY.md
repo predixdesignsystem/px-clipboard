@@ -1,3 +1,7 @@
+v0.0.10
+==================
+* added image to readme, removed watch, added view on github
+
 v0.0.9
 ==================
 * updated gh-pages script to vulcanize demo

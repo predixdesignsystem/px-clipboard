@@ -1,6 +1,6 @@
 {
   "name": "px-clipboard",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": [
     "px-clipboard.html"
   ],
@@ -14,7 +14,8 @@
     "test",
     ".github",
     "OSS_Notice.pdf",
-    "scripts"
+    "scripts",
+    "px-clipboard.png"
   ],
   "dependencies": {
     "polymer": "^1.5.0",
@@ -24,12 +25,11 @@
     "px-spacing-design": "^0.3.8"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#~v1.1.6",
     "px-starter-kit-design": "~0.5.5",
     "px-forms-design": "#~0.3.15",
     "px-tables-design": "#~0.3.12",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
-    "polymer-font-awesome": "~0.1.5",
+    "px-polymer-font-awesome":"^0.1.8",
     "px-tabs": "~0.4.0",
     "px-api-viewer": "~0.0.3",
     "px-demo-snippet": "~0.0.11",
