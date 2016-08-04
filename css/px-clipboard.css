@@ -578,7 +578,24 @@ a {
 
 .iron {
   height: 1.6rem;
-  width: 1.6rem; }
+  width: 1.6rem;
+  color: black; }
+  .iron.copiedIconGreen {
+    color: #059748; }
+
+.fadeOutCopied {
+  -webkit-transition: opacity 3s 2s;
+  -moz-transition: opacity 3s 2s;
+  -ms-transition: opacity 3s 2s;
+  -o-transition: opacity 3s 2s;
+  opacity: 0; }
+
+.fadeIn {
+  -webkit-transition: opacity 3s;
+  -moz-transition: opacity 3s;
+  -ms-transition: opacity 3s;
+  -o-transition: opacity 3s;
+  opacity: 1; }
 
 /*------------------------------------*    #CLEARFIX
 \*------------------------------------*/

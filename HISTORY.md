@@ -1,3 +1,7 @@
+v0.0.11
+==================
+* added a green checkmark icon and transition to the clipboard click.
+
 v0.0.10
 ==================
 * added image to readme, removed watch, added view on github

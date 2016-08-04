@@ -4,7 +4,7 @@
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
 <link rel="import" href="../polymer/polymer.html"/>
-<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html" />
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
 <link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
 
 <!--
@@ -34,7 +34,9 @@ Or, with no input/textarea:
   <template>
     <div class="flex">
       <div class="flex__item"><content></content></div>
-      <div class="iron flex__item"><iron-icon icon="polymer-font-awesome:fa-clipboard" id="copy"></iron-icon></div>
+      <div class="iron flex__item">
+        <iron-icon icon="fa:fa-clipboard" id="copy"></iron-icon>
+      </div>
     </div>
   </template>
 </dom-module>
@@ -102,6 +104,15 @@ Or, with no input/textarea:
        */
       _clipboard: {
         type: Object
+      },
+      /**
+       * a boolean which reflects whether the "copied" text should be visible.
+       * @type {Boolean}
+       * @prop _showCopiedText
+       */
+      _showCopiedText: {
+        type: Boolean,
+        value: false
       }
     },
     attached: function() {
@@ -178,10 +189,34 @@ Or, with no input/textarea:
       //listen to a success or error event. I put these here since "success" or "error" are really generic, and I wanted better event Names.
       this._clipboard.on('success', function(e) {
         this._success(e);
+        this.set('_showCopiedText', true);
+        this._changeIcon();
+
       }.bind(this))
       .on('error', function(e) {
         this._error(e);
       }.bind(this));
+    },
+    _changeIcon: function() {
+      var ironIcon = Polymer.dom(this.root).querySelector('iron-icon'),
+          copiedIcon = Polymer.dom(this.root).querySelector('.iron');
+
+      ironIcon.icon ='fa:fa-check-circle';
+      copiedIcon.classList.add('copiedIconGreen', 'fadeOutCopied');
+
+      if (this._showCopiedText) {
+        copiedIcon.classList.remove('fadeIn');
+        this.distributeContent();
+      }
+
+      setTimeout(function() {
+        ironIcon.icon ='fa:fa-clipboard';
+        copiedIcon.classList.remove('copiedIconGreen', 'fadeOutCopied');
+        copiedIcon.classList.add('fadeIn');
+        this.distributeContent();
+        // copiedText.classList.add('copiedText');
+      }.bind(this), 4000);
+
     },
     /**
      * This method finds the element specified in copyFrom, and sets _copyFromElem
