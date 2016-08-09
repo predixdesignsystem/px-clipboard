@@ -31,109 +31,116 @@
     <div class="hero u-p++ text--shadow">
       <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-clipboard" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
   		<h1 class="delta">px-clipboard</h1>
-  		<p>
-  			px-clipboard is used to quickly and easily copy text onto the user's clipboard.
-  		</p>
+      <div class="description-text">
+    		<p>
+    			px-clipboard is used to quickly and easily copy text onto the user's clipboard.
+    		</p>
+      </div>
   		<div class="flex">
   			<img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-clipboard.svg?style=flat-square" alt="Travis"/>
   			<img class="u-mr--" src="https://img.shields.io/bower/v/px-clipboard.svg?style=flat-square" alt="Bower"/>
   			<img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-clipboard.svg?style=flat-square" alt="Issues"/>
   		</div>
   	</div>
-    <br />
 
     <!-- mega demo -->
     <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
       <div class="tabContainer u-pt++ u-pl++">
         <px-tab-set selected="{{selected}}" bare no-bottom-border>
           <template is="dom-repeat" items="{{optionsArray}}">
-            <px-tab>Configuration {{indexPlusOne(index)}}</px-tab>
+            <px-tab>Option {{indexPlusOne(index)}}</px-tab>
           </template>
         </px-tab-set>
       </div>
       <px-tab-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{optionsArray}}">
-          <section class="tab-page flex flex--right flex--wrap">
-            <div class="mega-demo flex u-pb++">
-            <!-- Properties -->
-            <div class="properties u-ph+ u-pb+  u-m++">
-              <p class="epsilon">Properties</p>
-              <template is="dom-if" if="{{!item.dataClipboardText}}">
-                <div class="u-mb-">Copy From: <input class="text-input" type="text" placeholder="{{item.copyFrom}}" value="{{item.copyFrom::input}}" /></div>
-                <div class="u-mb-">Data Clipboard Action: <input class="text-input" type="text" placeholder="{{item.dataClipboardAction}}" value="{{item.dataClipboardAction::input}}" /></div>
-              </template>
-              <template is="dom-if" if="{{item.dataClipboardText}}">
-                <div class="u-mb-">Data Clipboard Text: <input class="text-input" type="text" placeholder="{{item.dataClipboardText}}" value="{{item.dataClipboardText::input}}" /></div>
-              </template>
-            </div>
+          <section class="tab-page">
+            <div class="mega-demo flex flex--wrap u-ph++ u-pb++">
+              <!-- Properties -->
+              <div class="properties u-ph+ u-pb+ u-mt+">
+                <p class="epsilon">Properties</p>
+                <template is="dom-if" if="{{!item.dataClipboardText}}">
+                  <div class="u-mb-">Copy From: <input class="text-input" type="text" placeholder="{{item.copyFrom}}" value="{{item.copyFrom::input}}" /></div>
+                  <div class="u-mb-">Data Clipboard Action: <input class="text-input" type="text" placeholder="{{item.dataClipboardAction}}" value="{{item.dataClipboardAction::input}}" /></div>
+                </template>
+                <template is="dom-if" if="{{item.dataClipboardText}}">
+                  <div class="u-mb-">Data Clipboard Text: <textarea  placeholder="{{item.dataClipboardText}}" value="{{item.dataClipboardText::input}}"></textarea></div>
+                </template>
+              </div>
 
-            <div class="demoContainer u-mr++">
-              <!-- demo -->
-              <div class="flex flex--col">
-                <div class="flex__item demo u-ph+ u-pb+ u-mt++">
-                  <br />
-                    <template is="dom-if" if="{{item.dataClipboardText}}">
-                      <div style="width: 450px;">
-                       <px-clipboard
-                        data-clipboard-text="{{item.dataClipboardText}}"
-                        >Simply click on the button to copy the text associated with it.</px-clipboard>
-                    </template>
+              <div class="demoContainer u-mt+">
+                <!-- demo -->
+                <div class="flex flex--col">
+                  <div class="flex__item demo u-p+">
+
+
                     <template is="dom-if" if="{{!item.dataClipboardText}}">
                       <div style="width: 282px;">
-                      <px-clipboard
-                        copy-from="{{item.copyFrom}}"
-                        data-clipboard-action="{{item.dataClipboardAction}}"
-                        >
-                        <template is="dom-if" if="[[_isCut(item)]]">
-                          <input type="text" class="grabContent" value="Cut Input {{indexPlusOne(index)}} Value" /></px-clipboard>
-                        </template>
-                        <template is="dom-if" if="[[_isCopy(item)]]">
-                          <input type="text" class="grabContent" value="Copy Input {{indexPlusOne(index)}} Value" /></px-clipboard>
-                        </template>
+                        <px-clipboard
+                          copy-from="{{item.copyFrom}}"
+                          data-clipboard-action="{{item.dataClipboardAction}}">
+                          <template is="dom-if" if="[[_isCut(item)]]">
+                            <input type="text" class="grabContent" value="Cut Input {{indexPlusOne(index)}} Value" />
+                          </template>
+                          <template is="dom-if" if="[[_isCopy(item)]]">
+                            <input type="text" class="grabContent" value="Copy Input {{indexPlusOne(index)}} Value" />
+                          </template>
+                        </px-clipboard>
+                      </div>
                     </template>
+
+                    <template is="dom-if" if="{{item.dataClipboardText}}">
+                      <div style="width: 450px;">
+                        <px-clipboard
+                          data-clipboard-text="{{item.dataClipboardText}}">
+                          Simply click on the button to copy the text associated with it.
+                        </px-clipboard>
+                      </div>
+                    </template>
+
+                  </div>
+
+                  <div class="flex__item">
+                    <px-demo-snippet
+                      element-properties={{item}}
+                      element-name="px-clipboard">
+                    </px-demo-snippet>
                   </div>
                 </div>
-                <div class="flex__item">
-                  <px-demo-snippet
-                    element-properties={{item}}
-                    element-name="px-clipboard">
-                  </px-demo-snippet>
+              </div>
+            </div>
+            <div class="apiContainer">
+              <div class="flex flex--col api u-mt++" >
+                <div>
+                  <px-api-viewer source="px-clipboard"></px-api-viewer>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="apiContainer">
-            <div class="flex flex--col api u-mt++" >
-              <div>
-                <px-api-viewer source="px-clipboard"></px-api-viewer>
-              </div>
-            </div>
-          </div>
-        </section>
-      </template>
-    </px-tab-pages>
-  </div>
-  <footer class="footer flex flex--center">
-    <div class="footer__container u-pv++">
-      <div>
-        <a href="https://ge.com/digital" >
-          <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
-        </a>
-      </div>
-      <div class="footer__list">
-        <ul class="list-inline list-inline--delimited">
-          <li>
-            <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
-          </li>
-          <li>
-            <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
-          </li>
-          <li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
-        </ul>
-      </div>
+          </section>
+        </template>
+      </px-tab-pages>
     </div>
-  </footer>
-</template>
+    <footer class="footer flex flex--center">
+      <div class="footer__container u-pv++">
+        <div>
+          <a href="https://ge.com/digital" >
+            <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+          </a>
+        </div>
+        <div class="footer__list">
+          <ul class="list-inline list-inline--delimited">
+            <li>
+              <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+            </li>
+            <li>
+              <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+            </li>
+            <li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </template>
 <script>
 window.addEventListener('WebComponentsReady', function() {
   var template = document.querySelector('template[is=dom-bind]'),
