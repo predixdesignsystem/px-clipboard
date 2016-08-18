@@ -1,6 +1,6 @@
 {
   "name": "px-clipboard",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": [
     "px-clipboard.html"
   ],
