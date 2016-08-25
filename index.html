@@ -147,11 +147,13 @@ window.addEventListener('WebComponentsReady', function() {
       optionsArray = [
         {
           copyFrom:".grabContent",
-          dataClipboardAction:"copy"
+          dataClipboardAction:"copy",
+          siblingElement: "<input type='text' class='grabContent' value='Copy Value' />"
         },
         {
           copyFrom:".grabContent",
-          dataClipboardAction:"cut"
+          dataClipboardAction:"cut",
+          siblingElement: "<input type='text' class='grabContent' value='cut Value' />"
         },
         {
           dataClipboardText:"This Content is not grabbed from an input, but is attached to the clipboard button"
