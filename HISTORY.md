@@ -1,3 +1,19 @@
+v0.1.3
+==================
+* changed icon to float--right, moved cursor:pointer to just the icon
+
+v0.1.2
+==================
+* uprev
+
+v0.1.1
+==================
+* move css to load inside of the templates
+
+v0.1.0
+==================
+* grunt -> gulp and style modules
+
 v0.0.13
 ==================
 * added overflow to demoContainer and removed flex__wrap from mega-demo
