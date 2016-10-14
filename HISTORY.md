@@ -1,3 +1,7 @@
+v0.1.4
+==================
+* latest demo snippet dependency and latest gulpfile.
+
 v0.1.3
 ==================
 * changed icon to float--right, moved cursor:pointer to just the icon
