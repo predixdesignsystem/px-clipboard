@@ -1,3 +1,8 @@
+v0.1.7
+==================
+* fixed layout issues
+* fixed demo and codepen
+
 v0.1.6
 ==================
 * added title to clipboard icon

@@ -40,6 +40,7 @@ Predix branding rules go in px-clipboard-predix.scss, not in this file.
   cursor: pointer;
   height: calculateRem(24px);
   width: calculateRem(24px);
+  margin-left: 5px;
 }
 .fadeOutCopied {
 

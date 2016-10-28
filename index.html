@@ -11,6 +11,7 @@
   <link rel="import" href="../px-theme/px-theme-styles.html">
   <style include="px-theme-styles" is="custom-style"></style>
 
+  <link rel="import" href="px-clipboard.html" />
   <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
   <link rel="import" href="../px-tabs/px-tab-set.html" />
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -137,7 +138,7 @@
             <li>
               <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
             </li>
-            <li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
+            <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
           </ul>
         </div>
       </div>
@@ -150,14 +151,17 @@ window.addEventListener('WebComponentsReady', function() {
       optionsArray = [
         {
           copyFrom:".grabContent",
-          dataClipboardAction:"copy"
+          dataClipboardAction:"copy",
+          lightDomContent: '<input type="text" class="grabContent" value="Copy Input 1 Value" />'
         },
         {
           copyFrom:".grabContent",
-          dataClipboardAction:"cut"
+          dataClipboardAction:"cut",
+          lightDomContent: '<input type="text" class="grabContent" value="Cut Input 2 Value" />'
         },
         {
-          dataClipboardText:"This Content is not grabbed from an input, but is attached to the clipboard button"
+          dataClipboardText:"This Content is not grabbed from an input, but is attached to the clipboard button",
+          lightDomContent: 'Simply click on the button to copy the text associated with it.'
         }
       ],
       indexPlusOne = function(num) {
@@ -170,12 +174,10 @@ window.addEventListener('WebComponentsReady', function() {
         return (item.dataClipboardAction === "copy");
       };
 
-  year = year.getFullYear();
 
   template.selected = "0";
   template.optionsArray = optionsArray;
   template.indexPlusOne = indexPlusOne;
-  template.year = year;
   template._isCut = _isCut;
   template._isCopy = _isCopy;
 });
