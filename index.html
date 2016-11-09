@@ -83,10 +83,10 @@
                           copy-from="{{item.copyFrom}}"
                           data-clipboard-action="{{item.dataClipboardAction}}">
                           <template is="dom-if" if="[[_isCut(item)]]">
-                            <input type="text" class="grabContent" value="Cut Input {{indexPlusOne(index)}} Value" />
+                            <input type="text" class="grabContent text-input" value="Cut Input {{indexPlusOne(index)}} Value" />
                           </template>
                           <template is="dom-if" if="[[_isCopy(item)]]">
-                            <input type="text" class="grabContent" value="Copy Input {{indexPlusOne(index)}} Value" />
+                            <input type="text" class="grabContent text-input" value="Copy Input {{indexPlusOne(index)}} Value" />
                           </template>
                         </px-clipboard>
                       </div>
@@ -153,12 +153,12 @@ window.addEventListener('WebComponentsReady', function() {
         {
           copyFrom:".grabContent",
           dataClipboardAction:"copy",
-          lightDomContent: '<input type="text" class="grabContent" value="Copy Input 1 Value" />'
+          lightDomContent: '<input type="text" class="grabContent text-input" value="Copy Input 1 Value" />'
         },
         {
           copyFrom:".grabContent",
           dataClipboardAction:"cut",
-          lightDomContent: '<input type="text" class="grabContent" value="Cut Input 2 Value" />'
+          lightDomContent: '<input type="text" class="grabContent text-input" value="Cut Input 2 Value" />'
         },
         {
           dataClipboardText:"This Content is not grabbed from an input, but is attached to the clipboard button",

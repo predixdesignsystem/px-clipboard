@@ -1,3 +1,7 @@
+v0.1.9
+==================
+* added flex__item to div content tag to allow clipboard to expand full width again
+
 v0.1.8
 ==================
 * fixed codepen
