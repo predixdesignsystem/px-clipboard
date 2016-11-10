@@ -1,3 +1,7 @@
+v0.1.10
+==================
+* added style variables for theming
+
 v0.1.9
 ==================
 * added flex__item to div content tag to allow clipboard to expand full width again
