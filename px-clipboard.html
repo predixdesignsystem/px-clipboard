@@ -24,10 +24,20 @@ Or, with no input/textarea:
 
     <px-clipboard data-clipboard-text="This text will be copied."></px-clipboard>
 
+## Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-clipboard-icon-color` | The color of the copy icon | $gray8
+`--px-clipboard-icon-color--hover` | The color of the copy icon when hovered | $primary-blue
+`--px-clipboard-icon-color--pressed`  | The color of the copy icon when pressed | $primary-blue-pressed
+`--px-clipboard-icon-color--copied` | The color of the copy icon when pressed and copy is complete | $dv-basic-green
+
 @element px-clipboard
 @blurb Element allowing copy/cut to clipboard.
 @homepage index.html
-@demo demo.html
+@demo index.html
 -->
 
 <link rel="import" href="css/px-clipboard-styles.html">
