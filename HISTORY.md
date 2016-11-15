@@ -1,3 +1,6 @@
+v0.1.12
+==================
+* changed var names to be consistent with BEM
 
 v0.1.11
 ==================
