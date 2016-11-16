@@ -1,13 +1,13 @@
 {
     "name": "px-clipboard",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "main": [
         "px-clipboard.html"
     ],
     "ignore": [
         ".*",
         "npm-debug.log",
-        "Gruntfile.js",
+        "gulpfile.js",
         "sass",
         "bower_components",
         "node_modules",
