@@ -1,6 +1,6 @@
 {
     "name": "px-clipboard",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "main": [
         "px-clipboard.html"
     ],
@@ -19,7 +19,7 @@
     ],
     "dependencies": {
         "polymer": "^1.6.0",
-        "px-theme": "~1.1.2",
+        "px-theme": "^2.0.1",
         "clipboard": "~1.5.12",
         "px-polymer-font-awesome": "^0.1.8",
         "px-spacing-design": "^0.3.8",
