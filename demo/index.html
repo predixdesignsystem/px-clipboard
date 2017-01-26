@@ -1,0 +1,165 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-clipboard"
+        description="px-clipboard is used to quickly and easily copy text onto the user's clipboard.">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive >
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component>
+        <div style="width:250px">
+
+          <template is="dom-if" if="{{!_isDataCopy(props.dataClipboardText.value)}}">
+            <div style="width: 282px;">
+              <px-clipboard
+                copy-from="{{props.copyFrom.value}}"
+                data-clipboard-action="[[props.dataClipboardAction.value]]">
+                <template is="dom-if" if="[[_isCutCopy(props.dataClipboardAction.value)]]">
+                  <input type="text" class="grabContent text-input" value="[[props.dataClipboardAction.value]] input value" />
+                </template>
+              </px-clipboard>
+            </div>
+          </template>
+
+          <template is="dom-if" if="{{_isDataCopy(props.dataClipboardText.value)}}">
+            <div style="width: 450px;">
+              <px-clipboard
+                data-clipboard-text="{{props.dataClipboardText.value}}">
+                Simply click on the button to copy the text associated with it.
+              </px-clipboard>
+            </div>
+          </template>
+
+
+        </div>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-clipboard"
+          links-includes="[[linksIncludes]]">
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-clipboard"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'local-element-demo',
+
+    properties: {
+
+      /**
+       * @property demoProps
+       * @type {Object}
+       */
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      /**
+       * @property demoProps
+       * @type {Array}
+       */
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+              {
+                configShowProps: [],
+                configName: "Copy",
+                showProps: ['copyFrom'],
+                copyFrom:  ".grabContent",
+                dataClipboardAction: "copy",
+                lightDomContent: '<input type="text" class="grabContent text-input" value="Copy Input Value" />'
+              },
+              {
+                configShowProps: [],
+                configName: "Cut",
+                copyFrom: ".grabContent",
+                dataClipboardAction: "cut",
+                lightDomContent: '<input type="text" class="grabContent text-input" value="Cut Input Value" />'
+              },
+              {
+                configShowProps: [],
+                configName: "Copy String",
+                copyFrom: '',
+                dataClipboardAction: "",
+                dataClipboardText: "This Content is not grabbed from an input, but is attached to the clipboard button",
+                lightDomContent: 'Simply click on the button to copy the text associated with it.'
+              }
+          ];
+        }
+      }
+    },
+
+    /**
+     * A reference for `this.props`. Read the documentation there.
+     */
+    demoProps: {
+      copyFrom: {
+        type: String,
+        defaultValue: ".grabContent"
+      },
+      dataClipboardAction: {
+        type: String,
+        defaultValue: 'copy'
+      },
+      dataClipboardText: {
+        type: String,
+        defaultValue: ''
+      },
+      lightDomContent: {
+        type: String,
+        defaultValue: '<input type="text" class="grabContent text-input" value="Copy Input Value" />'
+      }
+    },
+
+    ready: function () {
+
+    },
+    _isCutCopy: function(item) {
+      return (item && (item === "cut" || item === "copy"));
+    },
+    _isDataCopy: function(item) {
+      return (item && item.length > 0);
+    }
+  });
+</script>
