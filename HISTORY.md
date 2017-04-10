@@ -1,3 +1,7 @@
+v1.0.0
+==================
+* Major version bump for start of redesign
+
 v0.2.3
 ==================
 * install new demo component

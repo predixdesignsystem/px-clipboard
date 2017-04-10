@@ -28,12 +28,12 @@ common/abstract rules go in px-clipboard-sketch.scss, not in this file.
 .iron {
   color: var(--px-clipboard-icon-color, $gray8);
   &:hover{
-    color: var(--px-clipboard-icon-color--hover, $primary-blue);
+    color: var(--px-clipboard-icon-color--hover, $primary-default);
   }
   &:active {
-    color: var(--px-clipboard-icon-color--pressed, $primary-blue-pressed);
+    color: var(--px-clipboard-icon-color--pressed, $primary-pressed);
   }
   &.copiedIconGreen {
-   color: var(--px-clipboard-icon-color--copied, $dv-basic-green);
+   color: var(--px-clipboard-icon-color--copied, $green5);
   }
 }
