@@ -1,6 +1,7 @@
-v1.0.0
+v1.0.0-prerelease
 ==================
 * Major version bump for start of redesign
+* updated colors for redesign
 
 v0.2.3
 ==================
