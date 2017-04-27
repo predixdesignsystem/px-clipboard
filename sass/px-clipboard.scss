@@ -22,10 +22,21 @@ common/abstract rules go in px-clipboard-sketch.scss, not in this file.
 // Settings
 @import "px-colors-design/_settings.colors.scss";
 
-@import 'px-clipboard-sketch.scss';
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
 
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
 
+// Component
 .iron {
+  cursor: pointer;
+  height: calculateRem(24px);
+  width: calculateRem(24px);
+  margin-left: 5px;
   color: var(--px-clipboard-icon-color, $gray13);
   &:hover{
     color: var(--px-clipboard-icon-color--hover, $primary-default);
@@ -37,3 +48,16 @@ common/abstract rules go in px-clipboard-sketch.scss, not in this file.
    color: var(--px-clipboard-icon-color--copied, $status-green3);
   }
 }
+.fadeOutCopied {
+  transition: opacity 2.5s 0.4s;
+  opacity: 0;
+}
+.fadeIn {
+  transition: opacity 0.4s;
+  opacity: 1;
+}
+
+// Trumps
+@import "inuit-clearfix/_trumps.clearfix.scss";
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";

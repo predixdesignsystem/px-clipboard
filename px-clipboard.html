@@ -44,7 +44,7 @@ Custom property | Description | Default
 <dom-module id="px-clipboard">
   <template>
     <style include="px-clipboard-styles"></style>
-    
+
     <div class="flex flex--left">
       <div class="flex__item"><content></content></div>
       <div class="iron">
@@ -227,8 +227,7 @@ Custom property | Description | Default
         copiedIcon.classList.remove('copiedIconGreen', 'fadeOutCopied');
         copiedIcon.classList.add('fadeIn');
         this.distributeContent();
-        // copiedText.classList.add('copiedText');
-      }.bind(this), 4000);
+      }.bind(this), 2000);
 
     },
     /**

@@ -1,7 +1,8 @@
 v1.0.0-prerelease
 ==================
-* Major version bump for start of redesign
+* major version bump for start of redesign
 * updated colors for redesign
+* increased animation speed per design feedback
 
 v0.2.3
 ==================
