@@ -1,8 +1,9 @@
-v1.0.0-prerelease
+v1.0.0
 ==================
-* major version bump for start of redesign
-* updated colors for redesign
+* update --px-clipboard-icon-color
 * increased animation speed per design feedback
+* updated colors for redesign
+* major version bump for start of redesign
 
 v0.2.3
 ==================

@@ -37,7 +37,7 @@ common/abstract rules go in px-clipboard-sketch.scss, not in this file.
   height: calculateRem(24px);
   width: calculateRem(24px);
   margin-left: 5px;
-  color: var(--px-clipboard-icon-color, $gray13);
+  color: var(--px-clipboard-icon-color, $gray15);
   &:hover{
     color: var(--px-clipboard-icon-color--hover, $primary-default);
   }
