@@ -4,7 +4,7 @@
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
 <link rel="import" href="../polymer/polymer.html"/>
-<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+<link rel="import" href="../px-polymer-font-awesome/px-icon-set.html" />
 <link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
 
 <!--
@@ -48,7 +48,7 @@ Custom property | Description | Default
     <div class="flex flex--left">
       <div class="flex__item"><content></content></div>
       <div class="iron">
-        <iron-icon title="copy" icon="fa:fa-clipboard" id="copy"></iron-icon>
+        <iron-icon title="copy" icon="px:copy" id="copy"></iron-icon>
       </div>
     </div>
   </template>
@@ -214,7 +214,7 @@ Custom property | Description | Default
       var ironIcon = Polymer.dom(this.root).querySelector('iron-icon'),
           copiedIcon = Polymer.dom(this.root).querySelector('.iron');
 
-      ironIcon.icon ='fa:fa-check-circle';
+      ironIcon.icon ='px:confirm';
       copiedIcon.classList.add('copiedIconGreen', 'fadeOutCopied');
 
       if (this._showCopiedText) {
@@ -223,7 +223,7 @@ Custom property | Description | Default
       }
 
       setTimeout(function() {
-        ironIcon.icon ='fa:fa-clipboard';
+        ironIcon.icon ='px:copy';
         copiedIcon.classList.remove('copiedIconGreen', 'fadeOutCopied');
         copiedIcon.classList.add('fadeIn');
         this.distributeContent();
