@@ -4,6 +4,7 @@ v1.0.0
 * increased animation speed per design feedback
 * updated colors for redesign
 * major version bump for start of redesign
+* new icons
 
 v0.2.3
 ==================
