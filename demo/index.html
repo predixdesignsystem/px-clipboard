@@ -35,10 +35,10 @@
 
       <!-- Component ---------------------------------------------------------->
       <px-demo-component>
-        <div style="width:250px">
+        <div>
 
           <template is="dom-if" if="{{!_isDataCopy(props.dataClipboardText.value)}}">
-            <div style="width: 282px;">
+            <div>
               <px-clipboard
                 copy-from="{{props.copyFrom.value}}"
                 data-clipboard-action="[[props.dataClipboardAction.value]]">
@@ -50,7 +50,7 @@
           </template>
 
           <template is="dom-if" if="{{_isDataCopy(props.dataClipboardText.value)}}">
-            <div style="width: 450px;">
+            <div>
               <px-clipboard
                 data-clipboard-text="{{props.dataClipboardText.value}}">
                 Simply click on the button to copy the text associated with it.
