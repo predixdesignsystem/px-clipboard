@@ -10,7 +10,7 @@
 <link rel="import" href="../../px-demo/px-demo-interactive.html" />
 <link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
 
-<!-- Imports for this componnent -->
+<!-- Imports for this component -->
 <link rel="import" href="../../px-demo/css/px-demo-styles.html" />
 
 <!-- Demo DOM module -->
@@ -21,7 +21,9 @@
     <!-- Header -->
     <px-demo-header
         module-name="px-clipboard"
-        description="px-clipboard is used to quickly and easily copy text onto the user's clipboard.">
+        description="Px-clipboard is used to quickly and easily cut/copy text onto the user's clipboard.
+        The value to be cut/copied must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from.
+        If the copy-from attribute does not exist, the data-clipboard-text property must be used.">
     </px-demo-header>
 
     <!-- Interactive -->

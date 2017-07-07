@@ -8,11 +8,8 @@
 <link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
 
 <!--
-Element allowing copy/cut to clipboard.
-The value to be copied/cut must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from. if the copy-from attribute does not exist,
-the data-clipboard-text property must be used.
 
-##### Usage
+### Usage
 
     <px-clipboard copy-from="#copyMe"><input type="text" value="copy me" id="copyMe"/></px-clipboard>
 
@@ -24,7 +21,7 @@ Or, with no input/textarea:
 
     <px-clipboard data-clipboard-text="This text will be copied."></px-clipboard>
 
-## Styling
+### Styling
 The following custom properties are available for styling:
 
 Custom property | Description | Default
