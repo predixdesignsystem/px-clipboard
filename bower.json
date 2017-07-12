@@ -28,12 +28,15 @@
     "polymer": "^1.9.0",
     "px-theme": "^3.0.0",
     "clipboard": "~1.6.1",
-    "px-polymer-font-awesome": "^2.0.0",
-    "px-spacing-design": "^1.0.0",
-    "px-actionable-design": "^2.0.0"
+    "px-icon-set": "^2.0.0"
   },
   "devDependencies": {
-    "px-starter-kit-design": "^1.0.0",
+    "px-defaults-design": "^2.0.0",
+    "px-colors-design": "^1.0.0",
+    "px-normalize-design": "^1.0.0",
+    "px-box-sizing-design": "^1.0.0",
+    "px-flexbox-design": "^1.0.0",
+    "px-spacing-design": "^1.0.0",
     "px-demo": "^2.0.0"
   },
   "resolutions": {

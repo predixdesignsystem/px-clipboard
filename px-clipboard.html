@@ -4,7 +4,9 @@
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
 <link rel="import" href="../polymer/polymer.html"/>
-<link rel="import" href="../px-polymer-font-awesome/px-icon-set.html" />
+<link rel="import" href="../px-icon-set/px-icon-set.html" />
+<link rel="import" href="../px-icon-set/px-icon.html" />
+
 <link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
 
 <!--
@@ -45,7 +47,7 @@ Custom property | Description | Default
     <div class="flex flex--left">
       <div class="flex__item"><content></content></div>
       <div class="iron">
-        <iron-icon title="copy" icon="px:copy" id="copy"></iron-icon>
+        <px-icon title="copy" icon="px:copy" id="copy"></px-icon>
       </div>
     </div>
   </template>
@@ -208,7 +210,7 @@ Custom property | Description | Default
       }.bind(this));
     },
     _changeIcon: function() {
-      var ironIcon = Polymer.dom(this.root).querySelector('iron-icon'),
+      var ironIcon = Polymer.dom(this.root).querySelector('px-icon'),
           copiedIcon = Polymer.dom(this.root).querySelector('.iron');
 
       ironIcon.icon ='px:check-circle';
