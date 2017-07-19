@@ -213,7 +213,7 @@ Custom property | Description | Default
       var ironIcon = Polymer.dom(this.root).querySelector('px-icon'),
           copiedIcon = Polymer.dom(this.root).querySelector('.iron');
 
-      ironIcon.icon ='px:check-circle';
+      ironIcon.icon ='px-utl:confirmed';
       copiedIcon.classList.add('copiedIconGreen', 'fadeOutCopied');
 
       if (this._showCopiedText) {
@@ -222,7 +222,7 @@ Custom property | Description | Default
       }
 
       setTimeout(function() {
-        ironIcon.icon ='px:copy';
+        ironIcon.icon ='px-utl:copy';
         copiedIcon.classList.remove('copiedIconGreen', 'fadeOutCopied');
         copiedIcon.classList.add('fadeIn');
         this.distributeContent();

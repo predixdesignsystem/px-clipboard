@@ -104,28 +104,24 @@
         value: function(){
           return [
               {
-                configShowProps: [],
-                configName: "Copy",
-                showProps: ['copyFrom'],
-                copyFrom:  ".grabContent",
-                dataClipboardAction: "copy",
+                configName: 'Copy',
+                copyFrom:  '.grabContent',
+                dataClipboardAction: 'copy',
                 dataClipboardText: '',
                 lightDomContent: '<input type="text" class="grabContent text-input" value="Copy Input Value" />'
               },
               {
-                configShowProps: [],
-                configName: "Cut",
-                copyFrom: ".grabContent",
-                dataClipboardAction: "cut",
+                configName: 'Cut',
+                copyFrom: '.grabContent',
+                dataClipboardAction: 'cut',
                 dataClipboardText: '',
                 lightDomContent: '<input type="text" class="grabContent text-input" value="Cut Input Value" />'
               },
               {
-                configShowProps: [],
-                configName: "Copy String",
+                configName: 'Copy String',
                 copyFrom: '',
-                dataClipboardAction: "",
-                dataClipboardText: "This Content is not grabbed from an input, but is attached to the clipboard button",
+                dataClipboardAction: 'copy',
+                dataClipboardText: 'This content is not grabbed from an input, but is attached to the clipboard itself',
                 lightDomContent: 'Simply click on the button to copy the text associated with it.'
               }
           ];
@@ -137,17 +133,23 @@
      * A reference for `this.props`. Read the documentation there.
      */
     demoProps: {
-      copyFrom: {
-        type: String,
-        defaultValue: ".grabContent"
-      },
       dataClipboardAction: {
         type: String,
-        defaultValue: 'copy'
+        defaultValue: 'copy',
+        inputType: 'dropdown',
+        inputChoices: ['cut','copy']
+      },
+      copyFrom: {
+        type: String,
+        defaultValue: ".grabContent",
+        inputType: 'text',
+        inputDisabled: true
       },
       dataClipboardText: {
         type: String,
-        defaultValue: ''
+        defaultValue: '',
+        inputType: 'text',
+        inputDisabled: true
       },
       lightDomContent: {
         type: String,
