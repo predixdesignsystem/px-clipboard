@@ -1,13 +1,13 @@
-#px-clipboard [![Build Status](https://travis-ci.org/PredixDev/px-clipboard.svg?branch=master)](https://travis-ci.org/PredixDev/px-clipboard)
+# px-clipboard [![Build Status](https://travis-ci.org/PredixDev/px-clipboard.svg?branch=master)](https://travis-ci.org/PredixDev/px-clipboard)
 
 ## Overview
 
-The px-clipboard component lets the user copy a value onto their computer's clipboard.
+`Px-clipboard` is a Predix UI component which lets the user copy a value onto their computer's clipboard.
 
 It has 3 distinct modes:
-  1. copy from input
-  2. cut from input
-  3. copy from Text
+  1. Copy from input
+  2. Cut from input
+  3. Copy from text
 
 1) **Copy from Input**:
 
@@ -69,7 +69,7 @@ Finally, use the component in your application:
 <br />
 <hr />
 
-## documentation
+## Documentation
 
 Read the full API and view the demo [here](https://predixdev.github.io/px-clipboard).
 
