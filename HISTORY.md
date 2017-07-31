@@ -1,3 +1,7 @@
+v1.0.1
+==================
+* fix layout in IE11
+
 v1.0.0
 ==================
 * update --px-clipboard-icon-color
