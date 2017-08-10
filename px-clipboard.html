@@ -1,13 +1,10 @@
-<!--
-    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
-    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
-    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
--->
 <link rel="import" href="../polymer/polymer.html"/>
-<link rel="import" href="../px-icon-set/px-icon-set.html" />
-<link rel="import" href="../px-icon-set/px-icon.html" />
+<link rel="import" href="../px-icon-set/px-icon-set.html"/>
+<link rel="import" href="../px-icon-set/px-icon.html"/>
+<link rel="import" href="css/px-clipboard-styles.html"/>
 
-<link rel="import" href="clipboard.js.html"></script> <!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
+<!-- this is an html page that imports the clipboard.js library in a way that allows reuse of the library. -->
+<link rel="import" href="clipboard.js.html"></script>
 
 <!--
 
@@ -38,8 +35,6 @@ Custom property | Description | Default
 @homepage index.html
 @demo index.html
 -->
-
-<link rel="import" href="css/px-clipboard-styles.html">
 <dom-module id="px-clipboard">
   <template>
     <style include="px-clipboard-styles"></style>
