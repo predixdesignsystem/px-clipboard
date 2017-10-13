@@ -40,7 +40,7 @@ Custom property | Description | Default
     <style include="px-clipboard-styles"></style>
 
     <div class="flex flex--left">
-      <div class="flex__item flex__item--msfix"><content></content></div>
+      <div class="flex__item flex__item--msfix"><slot></slot></div>
       <div class="iron">
         <px-icon title="copy" icon="px-utl:copy" id="copy"></px-icon>
       </div>
@@ -123,9 +123,9 @@ Custom property | Description | Default
       }
     },
     attached: function() {
-      var content = this.$$('content'),
-          //this calls the _setCopyFrom method when the content is loaded, and makes sure the Polymer this is bound to that function.
-          _observer = Polymer.dom(content).observeNodes(this._setCopyFrom.bind(this)),
+      var slot = this.$$('slot'),
+          //this calls the _setCopyFrom method when the slot is loaded, and makes sure the Polymer this is bound to that function.
+          _observer = Polymer.dom(slot).observeNodes(this._setCopyFrom.bind(this)),
           copy = this.$$('#copy');
       //check whether this is a text only clipboard element.
       if (this.dataClipboardText) {
@@ -245,7 +245,7 @@ Custom property | Description | Default
      */
     _initializeCopy: function(copy) {
 
-      var content = this.$$('content'),
+      var slot = this.$$('slot'),
           copyFrom;
       //check we have an attribute telling us where to copy from
       if (this.copyFrom) {
