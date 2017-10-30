@@ -1,3 +1,7 @@
+v1.0.4
+==================
+* add device flags
+
 v1.0.3
 ==================
 * Fix comment for analyzer
