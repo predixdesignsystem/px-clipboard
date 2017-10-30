@@ -23,7 +23,8 @@
         module-name="px-clipboard"
         description="Px-clipboard is used to quickly and easily cut/copy text onto the user's clipboard.
         The value to be cut/copied must be placed in an input/textarea INSIDE px-clipboard, and referenced with copy-from.
-        If the copy-from attribute does not exist, the data-clipboard-text property must be used.">
+        If the copy-from attribute does not exist, the data-clipboard-text property must be used."
+        mobile tablet desktop>
     </px-demo-header>
 
     <!-- Interactive -->
@@ -91,7 +92,8 @@
        * @type {Object}
        */
       props: {
-        type: Object,
+        type: Object
+        mobile tablet desktop,
         value: function(){ return this.demoProps; }
       },
 
