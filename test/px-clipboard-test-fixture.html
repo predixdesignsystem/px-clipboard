@@ -22,9 +22,34 @@
 
   <body>
     <h3>Web Component Test : Fixture for px-clipboard</h3>
-    <px-clipboard id="px_clipboard_1"></px-clipboard>
-    <px-clipboard copy-from="#helloCopy" id="copy"><input type="text" id="helloCopy" value="hello World Copy"/></px-clipboard>
-    <px-clipboard data-clipboard-action="cut" copy-from="#helloCut" id="cut"><input type="text" id="helloCut" value="hello World Cut"/></px-clipboard>
-    <px-clipboard data-clipboard-text="Copy some text into the clipboard!" id="text"></px-clipboard>
+    <test-fixture>
+      <template id="px_clipboard_1">
+        <px-clipboard ></px-clipboard>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="copy">
+      <template>
+        <px-clipboard copy-from="#helloCopy">
+          <input type="text" id="helloCopy" value="hello World Copy"/>
+        </px-clipboard>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="cut">
+      <template>
+        <px-clipboard data-clipboard-action="cut" copy-from="#helloCut">
+          <input type="text" id="helloCut" value="hello World Cut"/>
+        </px-clipboard>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="text">
+      <template>
+        <px-clipboard data-clipboard-text="Copy some text into the clipboard!">
+        </px-clipboard>
+      </template>
+    </test-fixture>
+
   </body>
 </html>
