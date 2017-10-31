@@ -23,9 +23,25 @@
 
   <body>
     <h3>Web Component Test : Fixture for px-clipboard</h3>
-    <test-fixture id="px_clipboard_fixture">
+    <test-fixture id="px-clipboard-fixture">
       <template>
         <px-clipboard></px-clipboard>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="px-clipboard-copy-fixture">
+      <template>
+        <px-clipboard copy-from="#helloCopy">
+          <input type="text" id="helloCopy" value="hello World Copy"/>
+        </px-clipboard>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="px-clipboard-cut-fixture">
+      <template>
+        <px-clipboard data-clipboard-action="cut" copy-from="#helloCut">
+          <input type="text" id="helloCut" value="hello World Cut"/>
+        </px-clipboard>
       </template>
     </test-fixture>
   </body>

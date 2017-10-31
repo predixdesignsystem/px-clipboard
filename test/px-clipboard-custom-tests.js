@@ -3,7 +3,7 @@ suite('Custom Automation Tests for px-clipboard', function() {
       stubMethod;
 
   setup((done)=>{
-    clipboardEl = fixture('px_clipboard_fixture');
+    clipboardEl = fixture('px-clipboard-fixture');
     stubMethod = sinon.stub(document, 'execCommand');
     stubMethod.returns(true);
     flush(()=>{
@@ -39,53 +39,33 @@ suite('Custom Automation Tests for px-clipboard', function() {
 
   });
 
-  // test('check copy operation successful on copy from input', function(done){
-  //   let clipboardCopyIcon = Polymer.dom(clipboardCopy.root).querySelector('#copy');
-  //   clipboardCopy.addEventListener('pxClipboardSuccess', (evt)=> {
-  //     assert.equal(evt.detail.value, 'hello World Copy');
-  //     done();
-  //   });
-  //   clipboardCopy.addEventListener('pxClipboardError', (evt)=> {
-  //     assert.isOk(false, 'pxClipBoardError event raised, something is broken.');
-  //     done();
-  //   });
-  //   clipboardCopyIcon.click();
-  // });
+  test('check copy operation successful on copy from input', function(done){
+    let clipboardCopy = fixture('px-clipboard-copy-fixture'),
+        clipboardCopyIcon = Polymer.dom(clipboardCopy.root).querySelector('#copy'),
+        clipInput = Polymer.dom(clipboardCopy).querySelector('input');
 
-  // test('check cut operation successful on copy from input', function(done){
-  //   var cutEventReceived = false,
-  //       listen = function(evt) {
-  //         cutEventReceived = true;
-  //         assert.isTrue(cutEventReceived);
-  //         clipboardCut.removeEventListener('pxClipboardSuccess', listen);
-  //         clipboardCut.removeEventListener('pxClipboardError', listen);
-  //         done();
-  //       },
-  //       clipboardCutIcon = Polymer.dom(clipboardCut.root).querySelector('#copy');
-  //   clipboardCut.addEventListener('pxClipboardSuccess', listen);
-  //   clipboardCut.addEventListener('pxClipboardError', listen);
-  //   clipboardCutIcon.click();
-  // });
-  //
-  // test('check text copy operation successful', function(done){
-  //   var textEventReceived = false,
-  //       listen = function(evt) {
-  //         textEventReceived = true;
-  //         assert.isTrue(textEventReceived);
-  //         clipboardText.removeEventListener('pxClipboardSuccess', listen);
-  //         clipboardText.removeEventListener('pxClipboardError', listen);
-  //         done();
-  //       },
-  //       clipboardCopyTextIcon = Polymer.dom(clipboardText.root).querySelector('#copy');
-  //   clipboardText.addEventListener('pxClipboardSuccess', listen);
-  //   clipboardText.addEventListener('pxClipboardError', listen);
-  //   clipboardCopyTextIcon.click();
-  //
-  //   setTimeout(function() {
-  //     clipboardText.removeEventListener('pxClipboardSuccess', listen);
-  //     clipboardText.removeEventListener('pxClipboardError', listen);
-  //     assert.isTrue(false);
-  //     done();
-  //   },200);
-  // });
+    assert.equal(clipInput.value, 'hello World Copy');
+    clipboardCopy.addEventListener('pxClipboardSuccess', (evt)=> {
+      assert.equal(evt.detail.action, 'copy');
+      assert.equal(evt.detail.text, 'hello World Copy');
+      done();
+    });
+    flush(()=>{
+      clipboardCopyIcon.click();
+    });
+  });
+
+  test('check cut operation successful on copy from input', function(done){
+    let clipboardCut = fixture('px-clipboard-cut-fixture'),
+        clipboardCutIcon = Polymer.dom(clipboardCut.root).querySelector('#copy');
+
+    clipboardCut.addEventListener('pxClipboardSuccess', (evt)=>{
+      assert.equal(evt.detail.action, 'cut');
+      assert.equal(evt.detail.text, 'hello World Cut');
+      done();
+    });
+    flush(()=>{
+      clipboardCutIcon.click();
+    });
+  });
 });
