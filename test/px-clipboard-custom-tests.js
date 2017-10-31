@@ -39,12 +39,9 @@ suite('Custom Automation Tests for px-clipboard', function() {
 
   });
 
-
-
   // test('check copy operation successful on copy from input', function(done){
   //   let clipboardCopyIcon = Polymer.dom(clipboardCopy.root).querySelector('#copy');
   //   clipboardCopy.addEventListener('pxClipboardSuccess', (evt)=> {
-  //     debugger;
   //     assert.equal(evt.detail.value, 'hello World Copy');
   //     done();
   //   });
