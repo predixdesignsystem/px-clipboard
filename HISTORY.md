@@ -1,3 +1,7 @@
+v1.1.0
+==================
+* Polymer 1.x/2.x hybrid support.
+
 v1.0.5
 ==================
 * fix typo
