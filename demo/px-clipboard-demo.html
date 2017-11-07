@@ -30,13 +30,13 @@
     <!-- Interactive -->
     <px-demo-interactive >
       <!-- Configs -->
-      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+      <px-demo-configs slot="px-demo-configs" configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
 
       <!-- Props -->
-      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+      <px-demo-props slot="px-demo-props" props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
       <!-- Component ---------------------------------------------------------->
-      <px-demo-component>
+      <px-demo-component slot="px-demo-component">
         <div>
 
           <template is="dom-if" if="{{!_isDataCopy(props.dataClipboardText.value)}}">
@@ -66,6 +66,7 @@
       <!-- END Component ------------------------------------------------------>
 
       <px-demo-component-snippet
+          slot="px-demo-component-snippet"
           element-properties="{{props}}"
           element-name="px-clipboard"
           links-includes="[[linksIncludes]]">
