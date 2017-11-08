@@ -1,6 +1,6 @@
 {
   "name": "px-clipboard",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": [
     "px-clipboard.html"
   ],
@@ -41,9 +41,7 @@
     "px-demo": "^3.0.0"
   },
   "resolutions": {
-    "webcomponentsjs": "^1.0.0",
-    "px-icon-set": "^2.0.0",
-    "px-deck-selector": "^2.0.0"
+    "webcomponentsjs": "^1.0.0"
   },
   "variants": {
     "1.x": {
