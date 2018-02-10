@@ -1,3 +1,7 @@
+v1.1.2
+==================
+* fixing demo pages for IE11
+
 v1.1.1
 ==================
 * remove unneeded bower resolutions.
